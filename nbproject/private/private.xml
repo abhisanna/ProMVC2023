@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/controllers/MahasiswaController.java</file>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/models/Mahasiswa.java</file>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/models/Jurusan.java</file>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/daos/Koneksi.java</file>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/daos/JurusanDAO.java</file>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/models/CRUD.java</file>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/views/MahasiswaForm.java</file>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/daos/MahasiswaDAO.java</file>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/controllers/JurusanController.java</file>
+            <file>file:/Users/abhisanna/Documents/Java/ProMVC2023/src/mvc/views/JurusanForm.java</file>
+        </group>
+    </open-files>
+</project-private>

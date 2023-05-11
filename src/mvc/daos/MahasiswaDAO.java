@@ -62,4 +62,59 @@ public class MahasiswaDAO {
         
         return false;
     }
+    
+    public boolean update(Mahasiswa mhs) {
+        String sql = "UPDATE tmahasiswa SET nim=? WHERE nama=?";
+        try {
+            PreparedStatement stat = Koneksi.bukaKoneksi().prepareStatement(sql);
+            stat.setString(1, mhs.getNim());
+            stat.setString(2, mhs.getNama());
+            stat.setString(3, mhs.getJk());
+            stat.setInt(4, mhs.getTelepon());
+            stat.setString(5, mhs.getJurusan().getKodeJur());
+            
+            int row = stat.executeUpdate();
+            stat.close();
+        } catch(Exception e) {
+           Logger.getLogger(Mahasiswa.class.getName()). log(Level.SEVERE, null, e);
+        }
+        
+        return false;
+    }
+    
+    public boolean delete(Mahasiswa mhs) {
+        String sql = "DELETE FROM tmahasiswa WHERE nim=?";
+        try {
+            PreparedStatement statement = Koneksi.bukaKoneksi().prepareStatement(sql);
+            statement.setString(1, mhs.getNim());
+            int row = statement.executeUpdate();
+            statement.close();
+        } catch(Exception e) {
+            Logger.getLogger(Jurusan.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
+    
+    public ArrayList<Mahasiswa> ambilDataMahasiswa() {
+        ArrayList<Mahasiswa> allMahasiswa = new ArrayList<Mahasiswa>();
+        String sql = "SELECT * FROM tmahasiswa";
+        try {
+            if(Koneksi.bukaKoneksi() == null) {
+                return null;
+            } else {
+                PreparedStatement stat = Koneksi.bukaKoneksi().prepareStatement(sql);
+                ResultSet rs = stat.executeQuery();
+                while(rs.next()) {
+                   Mahasiswa d = new Mahasiswa(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), new Jurusan(rs.getString(5)));
+                    
+                   allMahasiswa.add(d);
+                }
+                stat.close();
+            }
+        } catch(Exception e) {
+            Logger.getLogger(Mahasiswa.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return allMahasiswa;
+    }
 }

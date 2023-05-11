@@ -47,6 +47,36 @@ public class MahasiswaForm extends javax.swing.JFrame {
         }
     }
     
+    private void resetForm() {
+        txtNim.setText(null);
+        txtNama.setText(null);
+        cbxJurusan.setSelectedItem(null);
+        rbWanita.setSelected(false);
+        rbPria.setSelected(false);
+        txtTelepon.setText(null);
+        txtNama.setText(null);
+        btnUbah.setEnabled(false);
+        btnHapus.setEnabled(false);
+        btnSimpan.setEnabled(true);
+        txtNim.requestFocus();
+    }
+    
+    private void tableToForm() {
+        txtNim.setText(tblModel.getValueAt(tblMahasiswa.getSelectedRow(), 0) + "");
+        txtNama.setText(tblModel.getValueAt(tblMahasiswa.getSelectedRow(), 1) + "");
+        cbxJurusan.getModel().setSelectedItem(tblModel.getValueAt(tblMahasiswa.getSelectedRow(), 2) + "");
+        if("Perempuan".equals(tblModel.getValueAt(tblMahasiswa.getSelectedRow(), 3) + "")) {
+            rbWanita.setSelected(true);
+        } else {
+            rbPria.setSelected(true);
+        }
+        txtTelepon.setText(tblModel.getValueAt(tblMahasiswa.getSelectedRow(), 4) + "");
+        txtNim.setEnabled(false);
+        btnSimpan.setEnabled(false);
+        btnUbah.setEnabled(true);
+        btnHapus.setEnabled(true);
+    }
+    
     private void setJurusan(List<Jurusan> jurs) {
         if(jurs == null) {
             JOptionPane.showMessageDialog(this, "Data jurusan tidak bisa " + "diload", "Gagal Koneksi", JOptionPane.ERROR_MESSAGE);
@@ -281,10 +311,38 @@ public class MahasiswaForm extends javax.swing.JFrame {
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
+        String nim = txtNim.getText();
+        String nama = txtNama.getText();
+        String jk = "";
+            if(rbPria.isSelected()) {
+                jk = "Laki-Laki";
+            } else {
+                jk = "Perempuan";
+            }
+        int telepon = Integer.parseInt(txtTelepon.getText().toString());
+        Jurusan j = (Jurusan) cbxJurusan.getSelectedItem();
+        
+        Mahasiswa mhs = new Mahasiswa(nim, nama, jk, telepon, j);
+        mController.setDml(mhs, CRUD.UBAH);
+        JOptionPane.showMessageDialog(this, "Data Berhasil di Update");
+        setDataMahasiswa(mController.ambilSemuaDataMahasiswa());
+        resetForm();
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
+        String nim = txtNim.getText();
+        Mahasiswa m = new Mahasiswa(nim);
+        int hapus = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin menghapus data tersebut?", null, JOptionPane.YES_NO_OPTION);
+        if(hapus == JOptionPane.YES_OPTION) {
+            mController.setDml(m, CRUD.HAPUS);
+            JOptionPane.showMessageDialog(this, "Data berhasil di hapus");
+        }
+        
+        setDataMahasiswa(mController.ambilSemuaDataMahasiswa());
+        resetForm();
+        
+        txtNim.setEnabled(true);
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnTutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutupActionPerformed

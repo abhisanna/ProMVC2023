@@ -25,7 +25,12 @@ public class MahasiswaController {
         this.crud = crud;
         
         switch(crud) {
-            
+            case INPUT: hasil = dao.insert(mhs);
+            break;
+            case UBAH: hasil = dao.update(mhs);
+            break;
+            case HAPUS: hasil = dao.delete(mhs);
+            break;
         }
     }
     

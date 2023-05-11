@@ -28,7 +28,7 @@ public class MahasiswaDAO {
                 ResultSet rs = stat.executeQuery();
                 
                 while(rs.next()) {
-                    Mahasiswa d = new Mahasiswa(rs.getString(1), rs.getString(2), new Jurusan(rs.getString(4), rs.getString(5)));
+                    Mahasiswa d = new Mahasiswa(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), new Jurusan(rs.getString(5)));
                     
                     allMahasiswa.add(d);
                 }
@@ -41,12 +41,14 @@ public class MahasiswaDAO {
     }
     
     public boolean insert(Mahasiswa mhs) {
-        String sql = "INSERT INTO tmahasiswa VALUES(?, ?, ?)";
+        String sql = "INSERT INTO tmahasiswa VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement stat = Koneksi.bukaKoneksi().prepareStatement(sql);
             stat.setString(1, mhs.getNim());
             stat.setString(2, mhs.getNama());
-            stat.setString(3, mhs.getJurusan().getKodeJur());
+            stat.setString(3, mhs.getJk());
+            stat.setInt(4, mhs.getTelepon());
+            stat.setString(5, mhs.getJurusan().getKodeJur());
             
             int row = stat.executeUpdate();
             if(row > 0) {

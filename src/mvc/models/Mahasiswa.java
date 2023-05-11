@@ -9,12 +9,23 @@ package mvc.models;
  * @author abhisanna
  */
 public class Mahasiswa {
-    String nim;
-    String nama;
-    Jurusan jurusan;
+    private String nim;
+    private String nama;
+    private Jurusan jurusan;
+    private String jk;
+    private int telepon;
+    
 
-    public Mahasiswa(String string, String string0, Jurusan jurusan) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Mahasiswa(String nim, String nama, String jk, int telepon, Jurusan jurusan) {
+        this.nim = nim;
+        this.nama = nama;
+        this.jurusan = jurusan;
+        this.jk = jk;
+        this.telepon = telepon;
+    }
+    
+    public Mahasiswa(String nim) {
+        this.nim = nim;
     }
 
     public String getNim() {
@@ -39,5 +50,13 @@ public class Mahasiswa {
 
     public void setJurusan(Jurusan jurusan) {
         this.jurusan = jurusan;
+    }
+
+    public String getJk() {
+        return jk;
+    }
+
+    public int getTelepon() {
+        return telepon;
     }
 }
